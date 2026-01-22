@@ -1,0 +1,54 @@
+package MODULE1;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class StringSort {
+
+    public static void main(String[] args) {
+        int count;
+        String tmp;
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter the no. of strings to sort");
+        count = scan.nextInt();
+        scan.nextLine(); // clear buffer
+
+        String strlist[] = new String[count];
+
+        System.out.println("Enter your strings:");
+        for (int i = 0; i < count; i++) {
+            strlist[i] = scan.nextLine();
+        }
+
+        System.out.println("Choose 1 or 2 from the menu");
+        System.out.println("1: in-built sort");
+        System.out.println("2: user-defined sort");
+        int choice = scan.nextInt();
+
+        switch (choice) {
+            case 1:
+                Arrays.sort(strlist);
+                break;
+
+            case 2:
+                for (int i = 0; i < count; i++) {
+                    for (int j = i + 1; j < count; j++) {
+                        if (strlist[i].compareTo(strlist[j]) > 0) {
+                            tmp = strlist[i];
+                            strlist[i] = strlist[j];
+                            strlist[j] = tmp;
+                        }
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Invalid choice");
+        }
+
+        System.out.println(Arrays.toString(strlist));
+        scan.close();
+    }
+}
